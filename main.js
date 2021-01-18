@@ -21,3 +21,11 @@ myGallery.push(image3);
 console.log(image1.title);
 console.log(myGallery[2]);
 
+showImage(image2.img);
+
+function showImage(img) {
+    let image = document.querySelector("#image");
+    image.setAttribute("src", `${img}`);
+}
+
+
