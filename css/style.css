@@ -49,8 +49,9 @@
 
 .image {
     position: absolute;
+    object-fit: fill;
     z-index: -1;
     margin-top: 49px;
-    height: 540px;
+    height: 550px;
     width: 100%;
 }

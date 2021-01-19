@@ -34,8 +34,14 @@ function showImage(img) {
     console.log(image);
 }
 
+function showTitle(name) {
+    let title = document.querySelector("#title");
+    title.innerHTML = `${name}`;
+}
+
 function slideImage(n) {
     showImage(myGallery[n].img);
+    showTitle(myGallery[n].title);
 }
 
 leftBtn.addEventListener("click", () => {
