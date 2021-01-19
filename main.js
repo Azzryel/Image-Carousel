@@ -1,5 +1,6 @@
 const leftBtn = document.querySelector("#left");
 const rightBtn = document.querySelector("#right");
+const addBtn = document.querySelector("#add");
 
 let myGallery = [];
 let currentSlide = 0;
@@ -65,6 +66,18 @@ rightBtn.addEventListener("click", () => {
     if (currentSlide > myGallery.length-1) {
         currentSlide = 0;
     }
+    slideImage(currentSlide);
+});
+
+addBtn.addEventListener("click", () => {
+    let title = document.querySelector("#picture-title").value;
+    let url = document.querySelector("#picture").value;
+    console.log(title);
+
+    const picture = new Image (`${title}`, `${url}`);
+    myGallery.push(picture);
+
+    currentSlide = myGallery.length-1;
     slideImage(currentSlide);
 });
 
