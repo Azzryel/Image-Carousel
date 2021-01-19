@@ -1,9 +1,11 @@
 const leftBtn = document.querySelector("#left");
 const rightBtn = document.querySelector("#right");
 const addBtn = document.querySelector("#add");
+const removeBtn = document.querySelector("#remove");
 
 let myGallery = [];
 let currentSlide = 0;
+
 
 class Image {
     constructor(title, img) {
@@ -46,9 +48,24 @@ function showWhereAt(at, of) {
 }
 
 function slideImage(n) {
+    
+    if (myGallery.length == 0) {
+        empty();
+        return;
+    }
+    console.log(currentSlide);
+
     showImage(myGallery[n].img);
     showTitle(myGallery[n].title);
     showWhereAt(n+1, myGallery.length);
+}
+
+function empty() {
+    console.log(currentSlide);
+        document.querySelector("#image").setAttribute("src", `./images/empty.png`);
+        document.querySelector("#title").innerHTML = "";
+        document.querySelector("#where-at").innerHTML = "";
+        alert("Gallery is empty! Add a picture.");
 }
 
 leftBtn.addEventListener("click", () => {
@@ -72,12 +89,29 @@ rightBtn.addEventListener("click", () => {
 addBtn.addEventListener("click", () => {
     let title = document.querySelector("#picture-title").value;
     let url = document.querySelector("#picture").value;
-    console.log(title);
 
     const picture = new Image (`${title}`, `${url}`);
     myGallery.push(picture);
 
     currentSlide = myGallery.length-1;
     slideImage(currentSlide);
+});
+
+removeBtn.addEventListener("click", () => {
+    console.log(currentSlide);
+    myGallery.splice(currentSlide, 1);
+    console.log(currentSlide);
+    if (currentSlide == 0) {
+        console.log(myGallery.length-1);
+        currentSlide = myGallery.length-1;
+        console.log(currentSlide);
+
+    }
+    else {
+    currentSlide -= 1;
+    }
+    console.log(currentSlide);
+    slideImage(currentSlide);
+    
 });
 
