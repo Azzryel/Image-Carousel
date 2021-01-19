@@ -90,6 +90,15 @@ addBtn.addEventListener("click", () => {
     let title = document.querySelector("#picture-title").value;
     let url = document.querySelector("#picture").value;
 
+    if(title.length > 20) {
+        alert("Title too long.");
+        return;
+    }
+    else if((url.match(/\.(jpeg|jpg|gif|png)$/) == null)) {
+        alert("Image url not valid.");
+        return;
+    }
+
     const picture = new Image (`${title}`, `${url}`);
     myGallery.push(picture);
 
