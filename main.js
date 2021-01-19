@@ -24,17 +24,12 @@ myGallery.push(image2);
 const image3 = new Image ("Image3", './images/photo4.jpg');
 myGallery.push(image3);
 
-console.log(image1.title);
-console.log(myGallery[2]);
-console.log(myGallery[2].img);
 
 slideImage(currentSlide);
 
 function showImage(img) {
     let image = document.querySelector("#image");
-    console.log(image);
     image.setAttribute("src", `${img}`);
-    console.log(image);
 }
 
 function showTitle(name) {
@@ -53,7 +48,6 @@ function slideImage(n) {
         empty();
         return;
     }
-    console.log(currentSlide);
 
     showImage(myGallery[n].img);
     showTitle(myGallery[n].title);
@@ -61,7 +55,6 @@ function slideImage(n) {
 }
 
 function empty() {
-    console.log(currentSlide);
         document.querySelector("#image").setAttribute("src", `./images/empty.png`);
         document.querySelector("#title").innerHTML = "";
         document.querySelector("#where-at").innerHTML = "";
@@ -90,7 +83,7 @@ addBtn.addEventListener("click", () => {
     let title = document.querySelector("#picture-title").value;
     let url = document.querySelector("#picture").value;
 
-    if(title.length > 20) {
+    if(title.length > 30) {
         alert("Title too long.");
         return;
     }
@@ -107,20 +100,13 @@ addBtn.addEventListener("click", () => {
 });
 
 removeBtn.addEventListener("click", () => {
-    console.log(currentSlide);
     myGallery.splice(currentSlide, 1);
-    console.log(currentSlide);
     if (currentSlide == 0) {
-        console.log(myGallery.length-1);
         currentSlide = myGallery.length-1;
-        console.log(currentSlide);
-
     }
     else {
     currentSlide -= 1;
     }
-    console.log(currentSlide);
-    slideImage(currentSlide);
-    
+    slideImage(currentSlide);   
 });
 
