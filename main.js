@@ -39,9 +39,15 @@ function showTitle(name) {
     title.innerHTML = `${name}`;
 }
 
+function showWhereAt(at, of) {
+    let where = document.querySelector("#where-at");
+    where.innerHTML = `${at} / ${of}`;
+}
+
 function slideImage(n) {
     showImage(myGallery[n].img);
     showTitle(myGallery[n].title);
+    showWhereAt(n+1, myGallery.length);
 }
 
 leftBtn.addEventListener("click", () => {
