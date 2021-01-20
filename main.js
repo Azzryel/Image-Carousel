@@ -70,7 +70,6 @@ function autoSlide(n) {
             currentSlide = 0;
         }
         slideImage(currentSlide);}, 5000);
-  //  setTimeout(slideImage(n), 3000);
 }
 
 function empty() {
@@ -92,7 +91,6 @@ function createDot(n) {
     dot.addEventListener("click", () => {
         currentSlide = parseInt(n);
         clearTimeout(auto);
-     //withou parseInt it start to be a strong at second click hmm slide image(n) the n there (note for commit)
         slideImage(currentSlide);
     });
     dotContainer.appendChild(dot);
