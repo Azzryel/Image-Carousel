@@ -8,6 +8,7 @@ const dotContainer = document.querySelector("#dot-container");
 
 let myGallery = [];
 let currentSlide = 0;
+let auto;
 
 
 class Image {
@@ -59,6 +60,17 @@ function slideImage(n) {
     showTitle(myGallery[n].title);
     showWhereAt(n+1, myGallery.length);
     activeDot(n);
+    autoSlide(n);
+}
+
+function autoSlide(n) {
+    auto = setTimeout(function(){ 
+        currentSlide = n+1;
+        if (currentSlide > myGallery.length-1) {
+            currentSlide = 0;
+        }
+        slideImage(currentSlide);}, 5000);
+  //  setTimeout(slideImage(n), 3000);
 }
 
 function empty() {
@@ -101,6 +113,7 @@ leftBtn.addEventListener("click", () => {
     if (currentSlide < 0) {
         currentSlide =myGallery.length -1;
     }
+    clearTimeout(auto);
     slideImage(currentSlide);
 });
 
@@ -110,6 +123,7 @@ rightBtn.addEventListener("click", () => {
     if (currentSlide > myGallery.length-1) {
         currentSlide = 0;
     }
+    clearTimeout(auto);
     slideImage(currentSlide);
 });
 
@@ -129,6 +143,7 @@ addBtn.addEventListener("click", () => {
     const picture = new Image (`${title}`, `${url}`);
     myGallery.push(picture);
 
+    clearTimeout(auto);
     currentSlide = myGallery.length-1;
     createDot(currentSlide);
     slideImage(currentSlide);
@@ -143,6 +158,7 @@ removeBtn.addEventListener("click", () => {
     else {
     currentSlide -= 1;
     }
+    clearTimeout(auto);
     slideImage(currentSlide);   
 });
 
