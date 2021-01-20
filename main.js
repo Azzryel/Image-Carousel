@@ -58,6 +58,7 @@ function slideImage(n) {
     showImage(myGallery[n].img);
     showTitle(myGallery[n].title);
     showWhereAt(n+1, myGallery.length);
+    activeDot(n);
 }
 
 function empty() {
@@ -77,13 +78,21 @@ function createDot(n) {
     dot.className = "dot";
     dot.id = `dot-${n}`;
     dot.innerHTML = `${n}`;
-   // console.log(n);
     dotContainer.appendChild(dot);
-  //  console.log(dotContainer);
 }
 
 function removeDot(n) {
     dotContainer.removeChild(dotContainer.childNodes[`${n+1}`]);
+}
+
+function activeDot (n) {
+    const dots = document.getElementsByClassName("dot");
+
+    for (let i=0; i<myGallery.length; i++) {
+        dots[i].className = dots[i].className.replace(" current", "");
+    }
+
+    dots[n].className += " current";
 }
 
 leftBtn.addEventListener("click", () => {
@@ -121,12 +130,11 @@ addBtn.addEventListener("click", () => {
     myGallery.push(picture);
 
     currentSlide = myGallery.length-1;
-    slideImage(currentSlide);
     createDot(currentSlide);
+    slideImage(currentSlide);
 });
 
 removeBtn.addEventListener("click", () => {
-    console.log(currentSlide);
     removeDot(currentSlide);
     myGallery.splice(currentSlide, 1);
     if (currentSlide == 0) {

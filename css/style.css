@@ -93,7 +93,7 @@
     transition: background-color 1s ease;
 }
 
-.dot:hover {
+.dot:hover, .current {
     background-color: white;
 }
 
