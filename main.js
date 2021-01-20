@@ -2,6 +2,8 @@ const leftBtn = document.querySelector("#left");
 const rightBtn = document.querySelector("#right");
 const addBtn = document.querySelector("#add");
 const removeBtn = document.querySelector("#remove");
+const dropdown = document.querySelector("#dropdown");
+const form = document.querySelector("#form");
 
 let myGallery = [];
 let currentSlide = 0;
@@ -56,9 +58,14 @@ function slideImage(n) {
 
 function empty() {
         document.querySelector("#image").setAttribute("src", `./images/empty.png`);
-        document.querySelector("#title").innerHTML = "";
+        document.querySelector("#title").innerHTML = "Gallery is empty";
         document.querySelector("#where-at").innerHTML = "";
         alert("Gallery is empty! Add a picture.");
+}
+
+function clearForm() {
+    document.querySelector("#picture-title").value = "";
+    document.querySelector("#picture").value = "";
 }
 
 leftBtn.addEventListener("click", () => {
@@ -108,5 +115,14 @@ removeBtn.addEventListener("click", () => {
     currentSlide -= 1;
     }
     slideImage(currentSlide);   
+});
+
+dropdown.addEventListener("mouseenter", () => {
+    document.querySelector("#form").style.display = "block";
+});
+
+form.addEventListener("mouseleave", () => {
+    document.querySelector("#form").style.display = "none";
+    clearForm();
 });
 
