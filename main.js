@@ -89,7 +89,12 @@ function createDot(n) {
     const dot = document.createElement("span");
     dot.className = "dot";
     dot.id = `dot-${n}`;
-    dot.innerHTML = `${n}`;
+    dot.addEventListener("click", () => {
+        currentSlide = parseInt(n);
+        clearTimeout(auto);
+     //withou parseInt it start to be a strong at second click hmm slide image(n) the n there
+        slideImage(currentSlide);
+    });
     dotContainer.appendChild(dot);
 }
 
@@ -170,4 +175,7 @@ form.addEventListener("mouseleave", () => {
     document.querySelector("#form").style.display = "none";
     clearForm();
 });
+
+
+
 
