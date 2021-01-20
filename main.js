@@ -4,6 +4,7 @@ const addBtn = document.querySelector("#add");
 const removeBtn = document.querySelector("#remove");
 const dropdown = document.querySelector("#dropdown");
 const form = document.querySelector("#form");
+const dotContainer = document.querySelector("#dot-container");
 
 let myGallery = [];
 let currentSlide = 0;
@@ -25,6 +26,9 @@ const image2 = new Image ("Image2", './images/photo3.JPG');
 myGallery.push(image2);
 const image3 = new Image ("Image3", './images/photo4.jpg');
 myGallery.push(image3);
+for (let i=0; i<myGallery.length; i++) {
+    createDot(`${i}`);
+}
 
 
 slideImage(currentSlide);
@@ -68,6 +72,20 @@ function clearForm() {
     document.querySelector("#picture").value = "";
 }
 
+function createDot(n) {
+    const dot = document.createElement("span");
+    dot.className = "dot";
+    dot.id = `dot-${n}`;
+    dot.innerHTML = `${n}`;
+   // console.log(n);
+    dotContainer.appendChild(dot);
+  //  console.log(dotContainer);
+}
+
+function removeDot(n) {
+    dotContainer.removeChild(dotContainer.childNodes[`${n+1}`]);
+}
+
 leftBtn.addEventListener("click", () => {
     currentSlide -= 1;
 
@@ -104,9 +122,12 @@ addBtn.addEventListener("click", () => {
 
     currentSlide = myGallery.length-1;
     slideImage(currentSlide);
+    createDot(currentSlide);
 });
 
 removeBtn.addEventListener("click", () => {
+    console.log(currentSlide);
+    removeDot(currentSlide);
     myGallery.splice(currentSlide, 1);
     if (currentSlide == 0) {
         currentSlide = myGallery.length-1;
