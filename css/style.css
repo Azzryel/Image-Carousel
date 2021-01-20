@@ -51,7 +51,6 @@
 
 .image {
     position: absolute;
-  
     z-index: -1;
     height: 100%;
     width: 100%;
@@ -95,5 +94,13 @@
 
 .dot:hover, .current {
     background-color: white;
+}
+
+#dot-container {
+    overflow: auto;
+    text-align: center;
+    width: 550px;
+    height: 20px;
+    margin-left: 10px;
 }
 
